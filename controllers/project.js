@@ -51,7 +51,6 @@ export const createProject = async(req,res) => {
 
     try{
         await newProject.save()
-        console.log(newProject.amountPaid)
         // if(!Mongoose.Types.ObjectId.isValid(project.reference.id)) return res.status(404).send("Reference doesn't exist!")
         const result = await Reference.findById(project.reference.id)
         const data = {
@@ -63,16 +62,13 @@ export const createProject = async(req,res) => {
         if(project.amountPaid > 0)
         {  
             const analytics = await Analytics.findOne({creator:req.userId})
-            console.log(analytics)
             const analyticData = {
                 revenue: parseFloat(analytics.revenue) + parseFloat(project.amountPaid)
             }
-            console.log(analyticData)
-            console.log(analytics.id)
-            const updatedAnalytics = await Analytics.findByIdAndUpdate(analytics.id,analyticData,{new:true})
-            console.log(updatedAnalytics)
+            await Analytics.findByIdAndUpdate(analytics.id,analyticData,{new:true})
+
     
-            }
+        }
         
         res.status(201).json(newProject)
 
