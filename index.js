@@ -59,14 +59,17 @@ app.use("/assets",assetsRoutes);
 
 app.use(errorHandler)
 
-const CONNECTION_URL = 'mongodb+srv://classed:wNnb6cE8BbDtU3Me@cluster0.iumc0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+// const CONNECTION_URL = 'mongodb+srv://classed:wNnb6cE8BbDtU3Me@cluster0.iumc0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+const CONNECTION_URL = 'mongodb://localhost/TimelineStudio'
 const PORT = process.env.PORT || 5000
 
-mongoose.connect(CONNECTION_URL, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})
+// mongoose.connect(CONNECTION_URL, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})
+mongoose.connect(CONNECTION_URL)
+
 .then(() => app.listen(PORT, () => console.log(`Server running on PORT: ${PORT}`)))
 .catch((error) => console.log(error.message))
 
-mongoose.set('useFindAndModify',false);
+// mongoose.set('useFindAndModify',false);
 
 
 
