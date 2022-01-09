@@ -76,7 +76,7 @@ export const signup = async (req,res,next) => {
         await Subscription.create({user: result._id})
 
         
-        const token = jwt.sign({ email: result.email, id: result._id}, 'test', {expiresIn: "24h"})
+        const token = jwt.sign({ email: result.email, id: result._id}, 'test', {expiresIn: "12h"})
 
         res.status(200).json({result, token})
     }catch(error){
