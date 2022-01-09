@@ -10,7 +10,7 @@ export const fetchAll = async(req,res) => {
         let query = Designation.find({creator: userId})
 
         const page = parseInt(req.query.page) || 1;
-        const pageSize = 5;
+        const pageSize = 10;
         const skip = (page - 1) * pageSize;
         const total = await Designation.countDocuments({creator: userId});
         

@@ -11,7 +11,7 @@ export const fetchAssets = async(req,res) => {
         let query = Assets.find({user: userId})
 
         const page = parseInt(req.query.page) || 1;
-        const pageSize = 5;
+        const pageSize = 10;
         const skip = (page - 1) * pageSize;
         const total = await Assets.countDocuments({user: userId});
         

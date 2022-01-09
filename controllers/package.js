@@ -11,7 +11,7 @@ export const fetchPackages = async(req,res) => {
         let query = Package.find({user: userId})
 
         const page = parseInt(req.query.page) || 1;
-        const pageSize = 5;
+        const pageSize = 10;
         const skip = (page - 1) * pageSize;
         const total = await Package.countDocuments({user: userId});
         

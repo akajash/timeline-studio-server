@@ -11,7 +11,7 @@ export const getEmployees = async(req,res) => {
         let query = Workforce.find({creator: userId})
 
         const page = parseInt(req.query.page) || 1;
-        const pageSize = 5;
+        const pageSize = 10;
         const skip = (page - 1) * pageSize;
         const total = await Workforce.countDocuments({creator: userId});
         

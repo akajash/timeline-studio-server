@@ -53,7 +53,7 @@ export const fetchGeneralExpenses = async(req,res) => {
         let query = Expense.find({user: userId})
 
         const page = parseInt(req.query.page) || 1;
-        const pageSize = 5;
+        const pageSize = 10;
         const skip = (page - 1) * pageSize;
         const total = await Expense.countDocuments({user: userId});
         
