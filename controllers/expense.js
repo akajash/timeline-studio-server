@@ -12,14 +12,13 @@ export const fetchProjectExpenses = async(req,res) => {
         let query = Expense.find({user: userId,order_id: order_id}).sort({createdAt: -1})
 
         const page = parseInt(req.query.page) || 1;
-        const pageSize = 10;
+        const pageSize = 25;
         const skip = (page - 1) * pageSize;
         const total = await Expense.countDocuments({user: userId, order_id: order_id});
         
 
         const pages = Math.ceil(total / pageSize);
 
-        const finalQ = query.skip(skip).limit(pageSize)
 
         if(page > pages){
             return res.status(404).json({
@@ -28,7 +27,7 @@ export const fetchProjectExpenses = async(req,res) => {
             })
         }
 
-        const result = await finalQ;
+        const result = await query.skip(skip).limit(pageSize);
         
         res.status(200).json({
             status: 'success',
@@ -53,14 +52,14 @@ export const fetchGeneralExpenses = async(req,res) => {
         let query = Expense.find({user: userId})
 
         const page = parseInt(req.query.page) || 1;
-        const pageSize = 10;
+        const pageSize = 25;
         const skip = (page - 1) * pageSize;
         const total = await Expense.countDocuments({user: userId});
         
 
         const pages = Math.ceil(total / pageSize);
 
-        finalQ = query.skip(skip).limit(pageSize)
+        
 
         if(page > pages){
             return res.status(404).json({
@@ -69,7 +68,7 @@ export const fetchGeneralExpenses = async(req,res) => {
             })
         }
 
-        const result = await finalQ;
+        const result = await query.skip(skip).limit(pageSize);
         
         res.status(200).json({
             status: 'success',
