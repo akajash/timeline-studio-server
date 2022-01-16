@@ -33,7 +33,7 @@ export const signin = async (req,res,next) => {
         console.log(isSubscribed.expiry_date)
 
         if(isSubscribed.expiry_date >= today){
-            const token = jwt.sign({email: existingUser.email, id: existingUser._id}, 'test', {expiresIn: '1h'})
+            const token = jwt.sign({email: existingUser.email, id: existingUser._id}, 'test', {expiresIn: '12h'})
             console.log("real")
             res.status(200).json({ result: existingUser, token, subscribed: true})
         }

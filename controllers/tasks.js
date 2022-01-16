@@ -6,11 +6,11 @@ export const fetchAllTasks = async(req,res) => {
     
     try{
         if(id==0){
-            const tasks = await Task.find({creator: req.userId})
+            const tasks = await Task.find({creator: req.userId}).sort({createdAt: -1})
             res.status(200).json(tasks)
         }
         else{
-            const tasks = await Task.find({creator: req.userId, projectId: id })
+            const tasks = await Task.find({creator: req.userId, projectId: id }).sort({createdAt: -1})
             res.status(200).json(tasks)
         }
         
