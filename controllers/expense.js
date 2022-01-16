@@ -9,7 +9,7 @@ export const fetchProjectExpenses = async(req,res) => {
 
     try{
         
-        let query = Expense.find({user: userId,order_id: order_id}).sort({createdAt: -1})
+        
 
         const page = parseInt(req.query.page) || 1;
         const pageSize = 25;
@@ -27,7 +27,7 @@ export const fetchProjectExpenses = async(req,res) => {
             })
         }
 
-        const result = await query.skip(skip).limit(pageSize);
+        const result = await Expense.find({user: userId,order_id: order_id}).sort({createdAt: -1}).skip(skip).limit(pageSize);
         
         res.status(200).json({
             status: 'success',
