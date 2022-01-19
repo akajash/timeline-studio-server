@@ -27,10 +27,6 @@ export const signin = async (req,res,next) => {
         } 
 
         const isSubscribed = await Subscription.findOne({user: existingUser._id})
-        console.log(existingUser)
-        console.log(existingUser._id)
-        console.log(isSubscribed)
-        console.log(isSubscribed.expiry_date)
 
         if(isSubscribed.expiry_date >= today){
             const token = jwt.sign({email: existingUser.email, id: existingUser._id}, 'test', {expiresIn: '12h'})
@@ -105,8 +101,8 @@ export const forgotPassword = async(req,res,next) => {
         const resetUrl = `http://localhost:3000/passwordreset/${resetToken}`
 
         const message = `
-            <h1>you have requested a password reset</h1>
-            <p>Please click the link below to reset your password</p>
+            <h1>You have requested a password reset</h1>
+            <p>Please click the link below to reset your password:</p>
             <a href=${resetUrl} clicktracking=off>${resetUrl}</a>
         `
 

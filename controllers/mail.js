@@ -2,10 +2,12 @@ import nodemailer from 'nodemailer'
 
 const sendEmail = (options) => {
     const transporter = nodemailer.createTransport({
-        service: 'gmail',
+        host: 'smtp.hostinger.com',
+        port: 465,
+        secure:false,
         auth: {
-            user: 'timeline.sass@gmail.com',
-            pass: 'Karthick@10'
+            user: 'support@studio.timelinesuite.com',
+            pass: 'Karthick310!'
         },
         tls: {
             rejectUnauthorized: false
@@ -19,7 +21,7 @@ const sendEmail = (options) => {
 
 
     const mailOptions = {
-        from : 'timeline.sass@gmail.com',
+        from : 'support@studio.timelinesuite.com',
         to: options.to,
         subject: options.subject,
         html: options.text

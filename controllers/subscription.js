@@ -3,8 +3,8 @@ import Subscription from "../models/subscription.js";
 import Razorpay from 'razorpay'
 
 const razorpay = new Razorpay({
-    key_id: 'rzp_test_hikMcmJVg0Mwou',
-    key_secret: 'ZpGzHOfvAIO7u8OBjvLF6sdY'
+    key_id: 'rzp_live_Kh5siGVFciiGl3',
+    key_secret: '8bLCA036RKUBPx7Re3kjeaXC'
 })
 
 
@@ -12,7 +12,7 @@ const razorpay = new Razorpay({
 export const subscribe = async(req,res) => {
 
 
-    const amount = 1299
+    const amount = 1199
     const currency = "INR"
     const payment_capture = 1
 
